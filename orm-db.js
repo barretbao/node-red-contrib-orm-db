@@ -346,7 +346,12 @@ function createSequelizeInstance(server){
             }) : new Sequelize(server?.database, server?.username, server?.password, {
                 host: server?.host,
                 port: server?.port,
-                dialect: server.driver
+                dialect: server.driver,
+                dialectOptions:{
+                    ssl: {
+                        rejectUnauthorized: false,
+                    }
+                }
             }),
         definitionModel: {},
         server: server
